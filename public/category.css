@@ -1,86 +1,86 @@
-/* ---------- Category Page Layout ---------- */
+/* ---------- Category Page (Seokheon-style row layout) ---------- */
 .category-page {
   padding-top: 5.5rem;
   padding-bottom: 4rem;
   min-height: 100vh;
 }
 
-.category-layout {
+.project-row {
   display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 3rem;
+  grid-template-columns: 2fr 1fr 1.2fr 3.5fr;
+  gap: 2rem;
   padding: 2.5rem 2rem;
+  border-top: 0.5px solid var(--border);
   align-items: start;
 }
 
-.category-info {
-  position: sticky;
-  top: 6.5rem;
+.project-row:last-child {
+  border-bottom: 0.5px solid var(--border);
 }
 
-.category-info .back-link {
-  display: inline-block;
-  font-size: 0.8rem;
-  color: var(--ink-soft);
-  margin-bottom: 2rem;
+.project-title h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0 0 1.4rem;
+  line-height: 1.2;
 }
 
-.category-info .back-link:hover {
+.project-credits {
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.project-credits div {
   color: var(--ink);
 }
 
-.category-info h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1;
-  margin: 0 0 1.5rem;
+.project-credits div.faded {
+  color: var(--ink-soft);
 }
 
-.category-info p {
-  font-size: 0.95rem;
+.project-category,
+.project-meta {
+  font-size: 0.85rem;
   line-height: 1.5;
   color: var(--ink-soft);
-  max-width: 30ch;
 }
 
-.category-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.2rem;
+.project-category strong {
+  color: var(--ink);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.3rem;
 }
 
-.gallery-item {
-  aspect-ratio: 4 / 5;
+.project-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
   background: rgba(0, 0, 0, 0.05);
   border: 1px dashed var(--border);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
   color: var(--ink-soft);
-  overflow: hidden;
 }
 
-.gallery-item img,
-.gallery-item video {
+.project-media img,
+.project-media video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* ---------- Mobile ---------- */
 @media (max-width: 800px) {
-  .category-layout {
+  .project-row {
     grid-template-columns: 1fr;
+    gap: 1rem;
     padding: 1.5rem 1.2rem;
   }
-  .category-info {
-    position: static;
-  }
-  .category-gallery {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
+  .project-media {
+    aspect-ratio: 16 / 10;
   }
 }
