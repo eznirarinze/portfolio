@@ -206,3 +206,14 @@ body.home {
   .marquee-track { animation: none; }
   .split-content .arrow { animation: none; }
 }
+
+/* ---------- Footer right group (socials + email) ---------- */
+.footer-right {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .footer-right { gap: 1rem; }
+}
