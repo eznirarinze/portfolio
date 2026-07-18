@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=Inter:wght@400;500;600&display=swap');
 
 :root {
-  --ink: rgba(0, 0, 0, 0.85);
-  --ink-soft: rgba(0, 0, 0, 0.5);
-  --border: rgba(0, 0, 0, 0.4);
-  --bg: #ffffff;
+  --ink: rgba(255, 255, 255, 0.9);
+  --ink-soft: rgba(255, 255, 255, 0.5);
+  --border: rgba(255, 255, 255, 0.25);
+  --bg: #0a0a0a;
 }
 
 * { box-sizing: border-box; }
