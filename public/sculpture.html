@@ -22,57 +22,34 @@
 
     <div class="project-row">
       <div class="project-title">
-        <h2>Project Title One</h2>
+        <h2>mmanwu biafra</h2>
         <div class="project-credits">
-          <div>Created by Arinze</div>
-          <div class="faded">Additional credit line</div>
+          <div>Arinze Appio-Riley</div>
+          <div class="faded">wood, plaster, burlap, chalk, braised nail, copper, grass flock, raffia, soot</div>
+          <br>
+          <div><strong>Components:</strong></div>
+          <div>igbo enwe eze — braised nails, copper, grass flock</div>
+          <div>soot box — wood, plaster, burlap, chalk</div>
         </div>
       </div>
       <div class="project-category">
         <strong>Sculpture</strong>
-        <div>Series</div>
+        <div>Installation</div>
       </div>
       <div class="project-meta">
-        <div>Client / Collaborator</div>
-        <div>2026</div>
+        <div>Sleepy Cyborg, Houston TX</div>
+        <div>April–May 2024</div>
       </div>
-      <div class="project-media">Image 1</div>
+      <div class="project-media carousel" data-interval="2000">
+        <img src="ARZE8071.jpg" alt="mmanwu biafra" class="active">
+        <img src="ARZE8008.jpg" alt="mmanwu biafra">
+        <img src="ARZE8024_01.jpg" alt="mmanwu biafra">
+      </div>
     </div>
 
-    <div class="project-row">
-      <div class="project-title">
-        <h2>Project Title Two</h2>
-        <div class="project-credits">
-          <div>Created by Arinze</div>
-        </div>
-      </div>
-      <div class="project-category">
-        <strong>Sculpture</strong>
-        <div>Commission</div>
-      </div>
-      <div class="project-meta">
-        <div>Client / Collaborator</div>
-        <div>2025</div>
-      </div>
-      <div class="project-media">Image 2</div>
-    </div>
-
-    <div class="project-row">
-      <div class="project-title">
-        <h2>Project Title Three</h2>
-        <div class="project-credits">
-          <div>Created by Arinze</div>
-        </div>
-      </div>
-      <div class="project-category">
-        <strong>Sculpture</strong>
-        <div>Personal</div>
-      </div>
-      <div class="project-meta">
-        <div>Self-Initiated</div>
-        <div>2024</div>
-      </div>
-      <div class="project-media">Image 3</div>
+    <div class="project-description">
+      <p>Mmanwu is the combination of the Igbo words <em>mmuo</em>, meaning spirit, and <em>onwu</em>, meaning death. Together they make <em>spirit of the dead</em> — the general name of Igbo masquerades. This phrase defines the purpose of masquerade: physical manifestations of spirits and ancestors. Most mmanwu, like Ijele, appear during the day to commemorate festivals or the change of seasons. More obscure, frightening masquerades may appear under the fall of night, usually in response to the passing of an Igwe or other prominent elders.</p>
+      <p>Mmanwu vary in appearance and purpose, but a universal element is ecstatic dance and energetic movement. <em>mmanwu biafra</em> is a frenzied masquerade limited to its umbral confines. The entity is obfuscated and bound to its coffin-like prison, but its aura is felt from any distance.</p>
     </div>
 
   </main>
@@ -81,6 +58,19 @@
     <span>&copy; 2026 ARINZE</span>
     <div class="footer-right"><a href="https://instagram.com/anyarinze" target="_blank" rel="noopener">@anyarinze</a><a href="mailto:contact@anyarinze.com">contact@anyarinze.com</a></div>
   </footer>
+
+  <script>
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const slides = carousel.querySelectorAll('img');
+      const interval = parseInt(carousel.dataset.interval, 10) || 2000;
+      let i = 0;
+      setInterval(() => {
+        slides[i].classList.remove('active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('active');
+      }, interval);
+    });
+  </script>
 
 </body>
 </html>
