@@ -26,10 +26,15 @@
         <div class="project-credits">
           <div>Arinze Appio-Riley</div>
           <div class="faded">wood, plaster, burlap, chalk, braised nail, copper, grass flock, raffia, soot</div>
-          <br>
-          <div><strong>Components:</strong></div>
-          <div>igbo enwe eze — braised nails, copper, grass flock</div>
-          <div>soot box — wood, plaster, burlap, chalk</div>
+        </div>
+        <div class="project-description-inline">
+          <p>Mmanwu is the combination of the Igbo words <em>mmuo</em>, meaning spirit, and <em>onwu</em>, meaning death. Together they make <em>spirit of the dead</em> — the general name of Igbo masquerades. This phrase defines the purpose of masquerade: physical manifestations of spirits and ancestors. Most mmanwu, like Ijele, appear during the day to commemorate festivals or the change of seasons. More obscure, frightening masquerades may appear under the fall of night, usually in response to the passing of an Igwe or other prominent elders.</p>
+          <p>Mmanwu vary in appearance and purpose, but a universal element is ecstatic dance and energetic movement. <em>mmanwu biafra</em> is a frenzied masquerade limited to its umbral confines. The entity is obfuscated and bound to its coffin-like prison, but its aura is felt from any distance.</p>
+          <div class="components">
+            <div><strong>Components:</strong></div>
+            <div>igbo enwe eze — braised nails, copper, grass flock</div>
+            <div>soot box — wood, plaster, burlap, chalk</div>
+          </div>
         </div>
       </div>
       <div class="project-category">
@@ -53,11 +58,6 @@
       </div>
     </div>
 
-    <div class="project-description">
-      <p>Mmanwu is the combination of the Igbo words <em>mmuo</em>, meaning spirit, and <em>onwu</em>, meaning death. Together they make <em>spirit of the dead</em> — the general name of Igbo masquerades. This phrase defines the purpose of masquerade: physical manifestations of spirits and ancestors. Most mmanwu, like Ijele, appear during the day to commemorate festivals or the change of seasons. More obscure, frightening masquerades may appear under the fall of night, usually in response to the passing of an Igwe or other prominent elders.</p>
-      <p>Mmanwu vary in appearance and purpose, but a universal element is ecstatic dance and energetic movement. <em>mmanwu biafra</em> is a frenzied masquerade limited to its umbral confines. The entity is obfuscated and bound to its coffin-like prison, but its aura is felt from any distance.</p>
-    </div>
-
   </main>
 
   <footer class="site-footer">
@@ -69,6 +69,7 @@
     document.querySelectorAll('.carousel').forEach(carousel => {
       const slides = carousel.querySelectorAll('img');
       const interval = parseInt(carousel.dataset.interval, 10) || 2000;
+      if (slides.length <= 1) return;
       let i = 0;
       setInterval(() => {
         slides[i].classList.remove('active');
