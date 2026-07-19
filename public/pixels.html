@@ -82,5 +82,58 @@
     <div class="footer-right"><a href="https://instagram.com/anyarinze" target="_blank" rel="noopener">@anyarinze</a><a href="mailto:contact@anyarinze.com">contact@anyarinze.com</a></div>
   </footer>
 
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&#10005;</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <script>
+    // Carousel cycling
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const slides = carousel.querySelectorAll('img');
+      const interval = parseInt(carousel.dataset.interval, 10) || 2000;
+      if (slides.length <= 1) return;
+      let i = 0;
+      setInterval(() => {
+        slides[i].classList.remove('active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('active');
+      }, interval);
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImg.src = '';
+    }
+
+    document.querySelectorAll('.project-media.carousel').forEach(carousel => {
+      carousel.addEventListener('click', () => {
+        const active = carousel.querySelector('img.active') || carousel.querySelector('img');
+        if (active) openLightbox(active.src, active.alt);
+      });
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === lightboxImg) closeLightbox();
+    });
+    lightboxClose.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
 </body>
 </html>
