@@ -238,3 +238,12 @@
     right: 1rem;
   }
 }
+
+/* ---------- Per-image object-position tweaks ---------- */
+.project-media.carousel img.align-bottom {
+  object-position: center bottom;
+}
+
+.project-media.carousel img.align-top {
+  object-position: center top;
+}
