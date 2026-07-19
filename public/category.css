@@ -140,3 +140,43 @@
     aspect-ratio: 4 / 5;
   }
 }
+
+/* ---------- Carousel rotation variants ---------- */
+/* When source images are sideways and need to be displayed upright */
+.project-media.carousel.rotate-ccw img,
+.project-media.carousel.rotate-cw img {
+  /* After 90deg rotation, width and height swap.
+     We rotate the image around its center, then scale so that
+     the rotated image's new "width" (which was the source height)
+     matches the container's height. This gives edge-to-edge fit. */
+  transform-origin: center center;
+  width: auto;
+  height: 100%;
+  left: 50%;
+  top: 0;
+}
+
+.project-media.carousel.rotate-ccw img {
+  transform: translate(-50%, 0) rotate(-90deg);
+}
+
+.project-media.carousel.rotate-cw img {
+  transform: translate(-50%, 0) rotate(90deg);
+}
+
+/* Ensure the frame is landscape/square so rotated portraits fit nicely */
+.project-media.carousel.rotate-ccw,
+.project-media.carousel.rotate-cw {
+  aspect-ratio: 3 / 2;
+}
+
+/* Per-image rotation inside a normal (non-rotated) carousel */
+.project-media.carousel img.rotate-ccw-single {
+  transform-origin: center center;
+  transform: rotate(-90deg) scale(1.5);
+}
+
+.project-media.carousel img.rotate-cw-single {
+  transform-origin: center center;
+  transform: rotate(90deg) scale(1.5);
+}

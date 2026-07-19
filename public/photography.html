@@ -22,59 +22,101 @@
 
     <div class="project-row">
       <div class="project-title">
-        <h2>Project Title One</h2>
+        <h2>Untitled Series</h2>
         <div class="project-credits">
-          <div>Art Directed by Arinze</div>
-          <div>Photography by Arinze</div>
-          <div class="faded">Additional credit line</div>
+          <div>Arinze Appio-Riley</div>
+          <div class="faded">35mm film</div>
         </div>
       </div>
       <div class="project-category">
         <strong>Photography</strong>
-        <div>Campaign</div>
+        <div>Film</div>
       </div>
       <div class="project-meta">
-        <div>Client / Collaborator</div>
-        <div>2026</div>
+        <div>Location TBD</div>
+        <div>Date TBD</div>
       </div>
-      <div class="project-media">Image 1</div>
+      <div class="project-media carousel rotate-ccw" data-interval="2000">
+        <img src="08580023.JPG" alt="Untitled" class="active">
+        <img src="08580037.JPG" alt="Untitled">
+        <img src="08580038.JPG" alt="Untitled">
+      </div>
     </div>
 
     <div class="project-row">
       <div class="project-title">
-        <h2>Project Title Two</h2>
+        <h2>CDMX</h2>
         <div class="project-credits">
-          <div>Creative & Art Directed by Arinze</div>
-          <div>Photography by Arinze</div>
+          <div>Arinze Appio-Riley</div>
+          <div class="faded">digital, treated</div>
         </div>
       </div>
       <div class="project-category">
         <strong>Photography</strong>
-        <div>Editorial</div>
+        <div>Travel</div>
       </div>
       <div class="project-meta">
-        <div>Client / Collaborator</div>
-        <div>2025</div>
+        <div>Mexico City, MX</div>
+        <div>Summer 2025</div>
       </div>
-      <div class="project-media">Image 2</div>
+      <div class="project-media carousel" data-interval="2000">
+        <img src="IMG_7042_3-2.jpg" alt="CDMX" class="active">
+        <img src="IMG_7075-2.jpg" alt="CDMX">
+        <img src="IMG_7264-2.jpg" alt="CDMX">
+        <img src="IMG_7274_2-2.jpg" alt="CDMX">
+        <img src="IMG_7283-2.jpg" alt="CDMX">
+        <img src="IMG_7286-2.jpg" alt="CDMX">
+      </div>
     </div>
 
     <div class="project-row">
       <div class="project-title">
-        <h2>Project Title Three</h2>
+        <h2>Hong Kong to Houston</h2>
         <div class="project-credits">
-          <div>Photography by Arinze</div>
+          <div>Arinze Appio-Riley</div>
+          <div>Model: Jasmine Bo <a href="https://instagram.com/iasmjnebo" target="_blank" rel="noopener">@iasmjnebo</a></div>
+          <div class="faded">digital</div>
         </div>
       </div>
       <div class="project-category">
         <strong>Photography</strong>
-        <div>Personal</div>
+        <div>Portrait</div>
       </div>
       <div class="project-meta">
-        <div>Self-Initiated</div>
-        <div>2024</div>
+        <div>Houston, TX</div>
+        <div>May 2024</div>
       </div>
-      <div class="project-media">Image 3</div>
+      <div class="project-media carousel" data-interval="2000">
+        <img src="ARZE0173.jpg" alt="Hong Kong to Houston" class="active">
+        <img src="ARZE0404.jpg" alt="Hong Kong to Houston">
+        <img src="ARZE0510-Edit.jpg" alt="Hong Kong to Houston">
+        <img src="ARZE0550.jpg" alt="Hong Kong to Houston">
+        <img src="ARZE0568.jpg" alt="Hong Kong to Houston">
+      </div>
+    </div>
+
+    <div class="project-row">
+      <div class="project-title">
+        <h2>Ostuni</h2>
+        <div class="project-credits">
+          <div>Arinze Appio-Riley</div>
+          <div>Model: Ludovico Perazzi <a href="https://instagram.com/lxdovico" target="_blank" rel="noopener">@lxdovico</a></div>
+          <div class="faded">digital</div>
+        </div>
+      </div>
+      <div class="project-category">
+        <strong>Photography</strong>
+        <div>Portrait</div>
+      </div>
+      <div class="project-meta">
+        <div>Ostuni, Italy</div>
+        <div>June 2026</div>
+      </div>
+      <div class="project-media carousel" data-interval="2000">
+        <img src="IMG_5128.jpg" alt="Ostuni" class="active">
+        <img src="IMG_5205.jpg" alt="Ostuni">
+        <img src="IMG_5171.jpg" alt="Ostuni" class="rotate-ccw-single">
+      </div>
     </div>
 
   </main>
@@ -83,6 +125,20 @@
     <span>&copy; 2026 ARINZE</span>
     <div class="footer-right"><a href="https://instagram.com/anyarinze" target="_blank" rel="noopener">@anyarinze</a><a href="mailto:contact@anyarinze.com">contact@anyarinze.com</a></div>
   </footer>
+
+  <script>
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const slides = carousel.querySelectorAll('img');
+      const interval = parseInt(carousel.dataset.interval, 10) || 2000;
+      if (slides.length <= 1) return;
+      let i = 0;
+      setInterval(() => {
+        slides[i].classList.remove('active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('active');
+      }, interval);
+    });
+  </script>
 
 </body>
 </html>
