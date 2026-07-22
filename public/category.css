@@ -229,6 +229,29 @@
   color: #fff;
 }
 
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
+  z-index: 1;
+}
+
+.lightbox-nav:hover {
+  color: #fff;
+}
+
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+
 @media (max-width: 800px) {
   .lightbox {
     padding: 1.5rem;
@@ -236,6 +259,28 @@
   .lightbox-close {
     top: 0.6rem;
     right: 1rem;
+  }
+  .lightbox-nav {
+    font-size: 2.2rem;
+    padding: 0.5rem;
+  }
+  .lightbox-prev { left: 0.2rem; }
+  .lightbox-next { right: 0.2rem; }
+}
+
+/* ---------- Photography section: fixed 500x500 media boxes ---------- */
+.category-page.photography .project-media.carousel {
+  width: 500px;
+  height: 500px;
+  max-width: 100%;
+  aspect-ratio: auto;
+}
+
+@media (max-width: 800px) {
+  .category-page.photography .project-media.carousel {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 }
 

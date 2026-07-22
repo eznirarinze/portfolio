@@ -18,7 +18,7 @@
     </div>
   </nav>
 
-  <main class="category-page">
+  <main class="category-page photography">
 
     <div class="project-row">
       <div class="project-title">
@@ -37,7 +37,7 @@
         <div>Ostuni, Italy</div>
         <div>June 2026</div>
       </div>
-      <div class="project-media carousel" data-interval="2000">
+      <div class="project-media carousel" data-interval="4000">
         <img src="IMG_5128.jpg" alt="Ostuni" class="active">
         <img src="IMG_5205.jpg" alt="Ostuni">
         <img src="IMG_5171.jpg" alt="Ostuni" class="rotate-ccw-single">
@@ -60,7 +60,7 @@
         <div>Location TBD</div>
         <div>Date TBD</div>
       </div>
-      <div class="project-media carousel rotate-ccw" data-interval="2000">
+      <div class="project-media carousel rotate-ccw" data-interval="4000">
         <img src="08580023.JPG" alt="Untitled" class="active">
         <img src="08580037.JPG" alt="Untitled">
         <img src="08580038.JPG" alt="Untitled">
@@ -83,7 +83,7 @@
         <div>Mexico City, MX</div>
         <div>Summer 2025</div>
       </div>
-      <div class="project-media carousel" data-interval="2000">
+      <div class="project-media carousel" data-interval="4000">
         <img src="glowshop.jpg" alt="CDMX" class="active">
         <img src="fridabw.jpg" alt="CDMX">
         <img src="castillo.jpg" alt="CDMX">
@@ -109,7 +109,7 @@
         <div>Houston, TX</div>
         <div>May 2024</div>
       </div>
-      <div class="project-media carousel" data-interval="2000">
+      <div class="project-media carousel" data-interval="4000">
         <img src="ARZE0173.jpg" alt="Graduation" class="active">
         <img src="ARZE0404.jpg" alt="Graduation">
         <img src="ARZE0510-Edit.jpg" alt="Graduation">
@@ -127,7 +127,9 @@
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
     <button class="lightbox-close" id="lightboxClose" aria-label="Close">&#10005;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&#8249;</button>
     <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&#8250;</button>
   </div>
 
   <script>
@@ -144,14 +146,27 @@
       }, interval);
     });
 
-    // Lightbox
+    // Lightbox with manual navigation
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
 
-    function openLightbox(src, alt) {
-      lightboxImg.src = src;
-      lightboxImg.alt = alt || '';
+    let galleryImgs = [];
+    let galleryIndex = 0;
+
+    function showGalleryImage(index) {
+      if (!galleryImgs.length) return;
+      galleryIndex = (index + galleryImgs.length) % galleryImgs.length;
+      const img = galleryImgs[galleryIndex];
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt || '';
+    }
+    function openLightbox(carousel, clickedImg) {
+      galleryImgs = Array.from(carousel.querySelectorAll('img'));
+      galleryIndex = Math.max(0, galleryImgs.indexOf(clickedImg));
+      showGalleryImage(galleryIndex);
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden', 'false');
     }
@@ -159,21 +174,28 @@
       lightbox.classList.remove('open');
       lightbox.setAttribute('aria-hidden', 'true');
       lightboxImg.src = '';
+      galleryImgs = [];
     }
 
     document.querySelectorAll('.project-media.carousel').forEach(carousel => {
       carousel.addEventListener('click', () => {
         const active = carousel.querySelector('img.active') || carousel.querySelector('img');
-        if (active) openLightbox(active.src, active.alt);
+        if (active) openLightbox(carousel, active);
       });
     });
+
+    lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); showGalleryImage(galleryIndex - 1); });
+    lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); showGalleryImage(galleryIndex + 1); });
 
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox || e.target === lightboxImg) closeLightbox();
     });
     lightboxClose.addEventListener('click', closeLightbox);
     document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
       if (e.key === 'Escape') closeLightbox();
+      else if (e.key === 'ArrowLeft') showGalleryImage(galleryIndex - 1);
+      else if (e.key === 'ArrowRight') showGalleryImage(galleryIndex + 1);
     });
   </script>
 
