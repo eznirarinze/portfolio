@@ -276,6 +276,15 @@
   aspect-ratio: auto;
 }
 
+@media (min-width: 801px) {
+  .category-page.photography .project-row {
+    grid-template-columns: 260px 140px 180px 1fr;
+  }
+  .category-page.photography .project-media.carousel {
+    justify-self: end;
+  }
+}
+
 @media (max-width: 800px) {
   .category-page.photography .project-media.carousel {
     width: 100%;
