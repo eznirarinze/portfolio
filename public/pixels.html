@@ -6,6 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="category.css">
+  <style>
+    .project-media.video-square {
+      aspect-ratio: 1 / 1;
+      max-width: 500px;
+      width: 100%;
+      background: #000;
+      border: none;
+    }
+    .project-media.video-square video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
@@ -22,57 +37,71 @@
 
     <div class="project-row">
       <div class="project-title">
-        <h2>Project Title One</h2>
+        <h2>FRICTION</h2>
         <div class="project-credits">
-          <div>Created by Arinze</div>
-          <div class="faded">Additional credit line</div>
+          <div>Arinze Appio-Riley</div>
+          <div class="faded">live visuals</div>
         </div>
       </div>
       <div class="project-category">
         <strong>Pixels</strong>
-        <div>Series</div>
+        <div>Event</div>
       </div>
       <div class="project-meta">
-        <div>Client / Collaborator</div>
-        <div>2026</div>
+        <div>Electrowerkz, London</div>
+        <div>February 2026</div>
       </div>
-      <div class="project-media">Image 1</div>
+      <div class="project-media video-square">
+        <video src="friction.mp4" poster="friction-poster.webp" autoplay muted loop playsinline preload="metadata"></video>
+      </div>
     </div>
 
     <div class="project-row">
       <div class="project-title">
-        <h2>Project Title Two</h2>
+        <h2>adedoyin</h2>
         <div class="project-credits">
-          <div>Created by Arinze</div>
+          <div>Arinze Appio-Riley</div>
+          <div>Model: Doyin Aderele <a href="https://instagram.com/a.dedoyin" target="_blank" rel="noopener">@a.dedoyin</a></div>
+          <div class="faded">VHS</div>
         </div>
       </div>
       <div class="project-category">
         <strong>Pixels</strong>
-        <div>Commission</div>
+        <div>Portrait</div>
       </div>
       <div class="project-meta">
-        <div>Client / Collaborator</div>
-        <div>2025</div>
+        <div>Houston, TX</div>
+        <div>March 2024</div>
       </div>
-      <div class="project-media">Image 2</div>
+      <div class="project-media video-portrait">
+        <video src="adedoyin.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+      </div>
     </div>
 
     <div class="project-row">
       <div class="project-title">
-        <h2>Project Title Three</h2>
+        <h2>Potion to Pour</h2>
         <div class="project-credits">
-          <div>Created by Arinze</div>
+          <div>Arinze Appio-Riley</div>
+          <div><a href="https://instagram.com/potiontopour" target="_blank" rel="noopener">@potiontopour</a></div>
+          <div>Founders: <a href="https://instagram.com/saucy4eva" target="_blank" rel="noopener">@saucy4eva</a>, <a href="https://instagram.com/nahhjamu" target="_blank" rel="noopener">@nahhjamu</a>, <a href="https://instagram.com/ladiesandlambos" target="_blank" rel="noopener">@ladiesandlambos</a></div>
+          <div class="faded">medium TBD</div>
         </div>
       </div>
       <div class="project-category">
         <strong>Pixels</strong>
-        <div>Personal</div>
+        <div>Video</div>
       </div>
       <div class="project-meta">
-        <div>Self-Initiated</div>
-        <div>2024</div>
+        <div>Location TBD</div>
+        <div>Date TBD</div>
       </div>
-      <div class="project-media">Image 3</div>
+      <div class="project-media video-carousel">
+        <video src="muted_p2p00000000_V1-0016.mp4" class="active" muted playsinline preload="metadata"></video>
+        <video src="muted_p2p00000000_V1-0017.mp4" muted playsinline preload="metadata"></video>
+        <video src="muted_p2p00000000_V1-0018.mp4" muted playsinline preload="metadata"></video>
+        <video src="muted_p2p00000000_V1-0019.mp4" muted playsinline preload="metadata"></video>
+      </div>
     </div>
 
   </main>
@@ -82,56 +111,24 @@
     <div class="footer-right"><a href="https://instagram.com/anyarinze" target="_blank" rel="noopener">@anyarinze</a><a href="mailto:contact@anyarinze.com">contact@anyarinze.com</a></div>
   </footer>
 
-
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&#10005;</button>
-    <img id="lightboxImg" src="" alt="">
-  </div>
-
   <script>
-    // Carousel cycling
-    document.querySelectorAll('.carousel').forEach(carousel => {
-      const slides = carousel.querySelectorAll('img');
-      const interval = parseInt(carousel.dataset.interval, 10) || 2000;
-      if (slides.length <= 1) return;
+    // Video carousel: play each clip to the end, then fade to the next
+    document.querySelectorAll('.video-carousel').forEach(carousel => {
+      const clips = Array.from(carousel.querySelectorAll('video'));
+      if (!clips.length) return;
       let i = 0;
-      setInterval(() => {
-        slides[i].classList.remove('active');
-        i = (i + 1) % slides.length;
-        slides[i].classList.add('active');
-      }, interval);
-    });
-
-    // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.getElementById('lightboxClose');
-
-    function openLightbox(src, alt) {
-      lightboxImg.src = src;
-      lightboxImg.alt = alt || '';
-      lightbox.classList.add('open');
-      lightbox.setAttribute('aria-hidden', 'false');
-    }
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      lightbox.setAttribute('aria-hidden', 'true');
-      lightboxImg.src = '';
-    }
-
-    document.querySelectorAll('.project-media.carousel').forEach(carousel => {
-      carousel.addEventListener('click', () => {
-        const active = carousel.querySelector('img.active') || carousel.querySelector('img');
-        if (active) openLightbox(active.src, active.alt);
-      });
-    });
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox || e.target === lightboxImg) closeLightbox();
-    });
-    lightboxClose.addEventListener('click', closeLightbox);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
+      const playCurrent = () => {
+        clips.forEach((v, n) => v.classList.toggle('active', n === i));
+        const v = clips[i];
+        v.currentTime = 0;
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {});
+      };
+      clips.forEach(v => v.addEventListener('ended', () => {
+        i = (i + 1) % clips.length;
+        playCurrent();
+      }));
+      playCurrent();
     });
   </script>
 
