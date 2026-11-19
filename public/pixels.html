@@ -48,6 +48,9 @@
       pointer-events: none;
       transition: opacity 0.6s ease-in-out;
     }
+    .project-media.video-carousel video.fill {
+      object-fit: cover;
+    }
     .project-media.video-carousel video.active {
       opacity: 1;
     }
@@ -195,8 +198,8 @@
         <div>Date TBD</div>
       </div>
       <div class="project-media video-carousel">
-        <video src="chroma_diff_dat_po3.mp4" class="active" muted playsinline preload="auto"></video>
-        <video src="muted_p2p00000000_V1-0012.mp4" muted playsinline preload="auto"></video>
+        <video src="muted_p2p00000000_V1-0012.mp4" class="active fill" muted playsinline preload="auto"></video>
+        <video src="chroma_diff_dat_po3.mp4" muted playsinline preload="auto"></video>
         <button class="vc-nav vc-prev" aria-label="Previous">
           <svg viewBox="0 0 12 12"><polyline points="8,1.5 3.5,6 8,10.5"></polyline></svg>
         </button>
