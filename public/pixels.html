@@ -30,6 +30,8 @@
       object-fit: cover;
       display: block;
     }
+
+    /* Video carousel */
     .project-media.video-carousel {
       position: relative;
       aspect-ratio: 1 / 1;
@@ -43,11 +45,51 @@
       height: 100%;
       object-fit: contain;
       opacity: 0;
+      pointer-events: none;
       transition: opacity 0.6s ease-in-out;
     }
     .project-media.video-carousel video.active {
       opacity: 1;
     }
+    .vc-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      line-height: 1;
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .vc-nav:hover { opacity: 1; }
+    .vc-prev { left: 0; }
+    .vc-next { right: 0; }
+    .vc-dots {
+      position: absolute;
+      bottom: 0.75rem;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .vc-dots button {
+      width: 7px;
+      height: 7px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: #fff;
+      opacity: 0.35;
+      cursor: pointer;
+    }
+    .vc-dots button.active { opacity: 1; }
   </style>
 </head>
 <body>
@@ -127,6 +169,9 @@
       <div class="project-media video-carousel">
         <video src="chroma_diff_dat_po3.mp4" class="active" muted playsinline preload="auto"></video>
         <video src="muted_p2p00000000_V1-0012.mp4" muted playsinline preload="auto"></video>
+        <button class="vc-nav vc-prev" aria-label="Previous">&#8249;</button>
+        <button class="vc-nav vc-next" aria-label="Next">&#8250;</button>
+        <div class="vc-dots"></div>
       </div>
     </div>
 
@@ -138,23 +183,35 @@
   </footer>
 
   <script>
-    // Video carousel: play each clip to the end, then fade to the next
+    // Video carousel: arrows + dots, auto-advances when a clip ends
     document.querySelectorAll('.video-carousel').forEach(carousel => {
       const clips = Array.from(carousel.querySelectorAll('video'));
       if (!clips.length) return;
+      const dotsWrap = carousel.querySelector('.vc-dots');
+      const dots = clips.map((_, n) => {
+        const d = document.createElement('button');
+        d.setAttribute('aria-label', 'Clip ' + (n + 1));
+        d.addEventListener('click', () => go(n));
+        dotsWrap.appendChild(d);
+        return d;
+      });
       let i = 0;
-      const playCurrent = () => {
-        clips.forEach((v, n) => v.classList.toggle('active', n === i));
+
+      function go(n) {
+        clips[i].pause();
+        i = (n + clips.length) % clips.length;
+        clips.forEach((v, k) => v.classList.toggle('active', k === i));
+        dots.forEach((d, k) => d.classList.toggle('active', k === i));
         const v = clips[i];
         v.currentTime = 0;
         const p = v.play();
         if (p && p.catch) p.catch(() => {});
-      };
-      clips.forEach(v => v.addEventListener('ended', () => {
-        i = (i + 1) % clips.length;
-        playCurrent();
-      }));
-      playCurrent();
+      }
+
+      clips.forEach(v => v.addEventListener('ended', () => go(i + 1)));
+      carousel.querySelector('.vc-prev').addEventListener('click', () => go(i - 1));
+      carousel.querySelector('.vc-next').addEventListener('click', () => go(i + 1));
+      go(0);
     });
   </script>
 
