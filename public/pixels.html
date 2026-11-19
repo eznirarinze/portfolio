@@ -7,19 +7,46 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="category.css">
   <style>
-    .project-media.video-square {
-      aspect-ratio: 1 / 1;
-      max-width: 500px;
+    .project-media.video-square,
+    .project-media.video-portrait,
+    .project-media.video-carousel {
       width: 100%;
       margin: 0 auto;
       background: #000;
       border: none;
     }
-    .project-media.video-square video {
+    .project-media.video-square {
+      aspect-ratio: 1 / 1;
+      max-width: 500px;
+    }
+    .project-media.video-portrait {
+      aspect-ratio: 9 / 16;
+      max-width: 360px;
+    }
+    .project-media.video-square video,
+    .project-media.video-portrait video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+    .project-media.video-carousel {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      max-width: 500px;
+    }
+    .project-media.video-carousel video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+    .project-media.video-carousel video.active {
+      opacity: 1;
     }
   </style>
 </head>
@@ -75,7 +102,7 @@
         <div>March 2024</div>
       </div>
       <div class="project-media video-portrait">
-        <video src="adedoyin.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+        <video src="adedoyin.mp4" autoplay muted loop playsinline preload="metadata"></video>
       </div>
     </div>
 
@@ -98,10 +125,8 @@
         <div>Date TBD</div>
       </div>
       <div class="project-media video-carousel">
-        <video src="muted_p2p00000000_V1-0016.mp4" class="active" muted playsinline preload="metadata"></video>
-        <video src="muted_p2p00000000_V1-0017.mp4" muted playsinline preload="metadata"></video>
-        <video src="muted_p2p00000000_V1-0018.mp4" muted playsinline preload="metadata"></video>
-        <video src="muted_p2p00000000_V1-0019.mp4" muted playsinline preload="metadata"></video>
+        <video src="chroma_diff_dat_po3.mp4" class="active" muted playsinline preload="auto"></video>
+        <video src="muted_p2p00000000_V1-0012.mp4" muted playsinline preload="auto"></video>
       </div>
     </div>
 
